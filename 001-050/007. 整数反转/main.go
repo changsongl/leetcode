@@ -10,6 +10,7 @@ func main() {
 	fmt.Println(reverse(-123))
 }
 
+// 巧妙使用部分对比，前部分和后部分，分别对比，来确保不会越界。
 func reverse(x int) int {
 	r := 0
 	for x > 9 || x < -9 {
@@ -26,6 +27,7 @@ func reverse(x int) int {
 	return r*10 + x%10
 }
 
+// 通过检查是否overflow来决定是否返回0。
 func reverseSmart(x int) int {
 	var r int32 = 0
 
@@ -41,6 +43,7 @@ func reverseSmart(x int) int {
 	return int(r)
 }
 
+// 使用64位，最后检查是否越界。
 func reverseInt64(x int) int {
 	var r int64 = 0
 
@@ -55,6 +58,7 @@ func reverseInt64(x int) int {
 	return int(r)
 }
 
+// 最粗鲁办法
 func reverseWorst(x int) int {
 	isNeg := false
 	s := strconv.Itoa(x)
