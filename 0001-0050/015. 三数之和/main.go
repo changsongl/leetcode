@@ -6,12 +6,61 @@ import (
 	"sort"
 )
 
+//[-1,0,1,2,-1,-4,-2,-3,3,0,4]
+
 func main() {
-	fmt.Println(threeSum([]int{-1, 0, 1, 2, -1, -4}))
+	fmt.Println(threeSum([]int{-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4}))
+}
+
+// 44 ms
+func threeSum(nums []int) [][]int {
+	var result [][]int
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] < nums[j]
+	})
+
+	length := len(nums)
+	for i := 0; i < length-2; i++ {
+		if i != 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		l, r, target := i+1, length-1, -nums[i]
+		for l != r {
+			moveL, moveR := false, false
+			lNum, rNum := nums[l], nums[r]
+			if lNum+rNum == target {
+				result = append(result, []int{nums[i], lNum, rNum})
+				moveL, moveR = true, true
+			} else {
+				if nums[i]+lNum+rNum > 0 {
+					moveR = true
+				} else {
+					moveL = true
+				}
+			}
+
+			for moveL && l < r {
+				l++
+				if nums[l] != lNum {
+					break
+				}
+			}
+
+			for moveR && l < r {
+				r--
+				if nums[r] != rNum {
+					break
+				}
+			}
+		}
+	}
+
+	return result
 }
 
 // 492 ms	10 MB
-func threeSum(nums []int) [][]int {
+func threeSumSort(nums []int) [][]int {
 	if len(nums) < 3 {
 		return nil
 	}
