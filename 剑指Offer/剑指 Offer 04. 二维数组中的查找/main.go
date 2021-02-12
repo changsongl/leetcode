@@ -14,8 +14,10 @@ func main() {
 	))
 }
 
-//执行用时：24 ms, 在所有 Go 提交中击败了96.60%的用户
-//内存消耗：6.6 MB, 在所有 Go 提交中击败了71.37%的用户
+// 执行用时：24 ms, 在所有 Go 提交中击败了96.60%的用户
+// 内存消耗：6.6 MB, 在所有 Go 提交中击败了71.37%的用户
+//
+// 思路是从左上角出发, 如果从右上角开始，if条件可少一个
 func findNumberIn2DArray(matrix [][]int, target int) bool {
 	if len(matrix) == 0 {
 		return false
