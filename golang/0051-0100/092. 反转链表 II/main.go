@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	h := reverseBetween(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4, Next: nil}}}}, 1, 4)
+	h := reverseBetween(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4, Next: nil}}}}, 1, 3)
 	printNodes(h)
 }
 
