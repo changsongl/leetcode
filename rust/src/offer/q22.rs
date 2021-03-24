@@ -23,7 +23,33 @@ pub struct Solution{
 
 impl Solution {
     pub fn get_kth_from_end(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-        None
+        let (mut fast, mut slow) = (&head, &head);
+        let mut i = 0;
+        loop {
+            match fast {
+                Option::None => {
+                    break;
+                },
+                Option::Some(b) => {
+                    fast = &b.next;
+                }
+            }
+
+            if i >= k {
+                match slow {
+                    Option::None => {
+                        break;
+                    },
+                    Option::Some(b) => {
+                        slow = &b.next;
+                    }
+                }
+            }
+
+            i += 1;
+        }
+
+        slow.clone()
     }
 }
 
