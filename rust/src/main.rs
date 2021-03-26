@@ -10,5 +10,7 @@ struct A {
 
 fn main()
 {
-    println!("{:?}", offer::q57::Solution::find_continuous_sequence(9));
+    let l1 = Box::new(offer::q25::ListNode::new(1));
+    let l2 = Box::new(offer::q25::ListNode::new(2));
+    println!("{:?}", offer::q25::Solution::merge_two_lists(Some(l1), Some(l2)));
 }
