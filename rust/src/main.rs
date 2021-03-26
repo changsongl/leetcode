@@ -10,9 +10,5 @@ struct A {
 
 fn main()
 {
-    let mut a = A{b: String::from("ja")};
-    let mut aa = Some(a);
-    let mut aaa = aa.as_mut().unwrap();
-    aaa.b = String::from("xxxx");
-    println!("{:?}, {:?}", aa, aaa);
+    println!("{}", offer::q42::Solution::max_sub_array(vec![-2,1,-3,4,-1,2,1,-5,4]));
 }
