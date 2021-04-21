@@ -4,9 +4,9 @@ import "fmt"
 
 func main() {
 	//fmt.Println(numDecodings("0"), 0)
-	fmt.Println(numDecodings("12"), 2)
+	//fmt.Println(numDecodings("12"), 2)
 	fmt.Println(numDecodings("123"), 3)
-	fmt.Println(numDecodings("0"), 0)
+	//fmt.Println(numDecodings("0"), 0)
 }
 
 func numDecodings(s string) int {
