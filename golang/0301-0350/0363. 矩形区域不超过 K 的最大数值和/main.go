@@ -11,6 +11,7 @@ func main() {
 	fmt.Println(maxSumSubmatrix([][]int{{5, -4, -3, 4}, {-3, -4, 4, 5}, {5, 1, 5, -4}}, 8))
 }
 
+// TODO: optimize
 func maxSumSubmatrix(matrix [][]int, k int) int {
 	if len(matrix) == 0 {
 		return 0
