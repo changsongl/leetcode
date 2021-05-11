@@ -2,19 +2,12 @@ package main
 
 import "fmt"
 
-// 1
-// 2
+// 011
+// 001
 
 // 001
 // 010
-
-// 001
-// 000
-// 101
-
-// 001
-// 000
-// 010
+// 011
 
 func main() {
 	fmt.Println(decode([]int{1, 2}, 1))
