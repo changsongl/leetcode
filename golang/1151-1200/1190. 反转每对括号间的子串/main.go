@@ -25,21 +25,21 @@ func reverseParentheses(s string) string {
 func reverseString(s string, loop int) (string, int) {
 	str := ""
 	for i := 0; i < len(s); i++ {
-		var newStr string
+		var nStr string
 		if s[i] == '(' {
 			rs, ni := reverseString(s[i+1:], loop+1)
 			i += ni + 1
-			newStr = rs
+			nStr = rs
 		} else if s[i] == ')' {
 			return str, i
 		} else {
-			newStr = string(s[i])
+			nStr = string(s[i])
 		}
 
 		if loop%2 == 0 {
-			str = newStr + str
+			str = nStr + str
 		} else {
-			str += newStr
+			str += nStr
 		}
 	}
 	return str, 0
