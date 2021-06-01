@@ -39,5 +39,6 @@ func checkSubarraySumN2(nums []int, k int) bool {
 			}
 		}
 	}
+
 	return false
 }
