@@ -30,22 +30,26 @@ func flatten(root *Node) *Node {
 	}
 
 	var f func(n *Node) *Node
-	f = func(n *Node) *Node {
-		last, node := n, n
+	f = func(n *Node) (last *Node) {
 
-		for node != nil {
-			last = node
-			node = node.Next
+		cur := n
 
-			if last.Child != nil {
-				nextLast := f(last.Child)
-				last.Next, last.Child.Prev = last.Child, last
-				if node != nil {
-					node.Prev = nextLast
-					nextLast.Next = node
+		for cur != nil {
+			next := cur.Next
+
+			if cur.Child != nil {
+				nextLast := f(cur.Child)
+				cur.Next, cur.Child.Prev = cur.Child, cur
+				if next != nil {
+					next.Prev = nextLast
+					nextLast.Next = next
 				}
-				last.Child = nil
+				cur.Child = nil
+				last = nextLast
+			} else {
+				last = cur
 			}
+			cur = next
 		}
 
 		return last
