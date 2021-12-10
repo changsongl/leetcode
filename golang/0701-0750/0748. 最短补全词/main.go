@@ -1,60 +1,31 @@
 package main
 
 import (
-	"sort"
-	"strings"
+	"unicode"
 )
 
-func shortestCompletingWord(licensePlate string, words []string) string {
-	n := len(words)
-	wordsIndex := make(map[string]int, n)
-	for i, word := range words {
-		wordsIndex[word] = i
-	}
-
-	sort.Slice(words, func(i, j int) bool {
-		wordI, wordJ := words[i], words[j]
-		if len(wordI) == len(wordJ) {
-			return wordsIndex[wordI] < wordsIndex[wordJ]
-		}
-
-		return len(wordI) < len(wordJ)
-	})
-
-	letterMap := make(map[int32]int)
-	count := 0
-	for _, l := range strings.ToLower(licensePlate) {
-		if l >= 'a' && l <= 'z' {
-			letterMap[l]++
-			count++
+func shortestCompletingWord(licensePlate string, words []string) (ans string) {
+	cnt := [26]int{}
+	for _, ch := range licensePlate {
+		if unicode.IsLetter(ch) {
+			cnt[unicode.ToLower(ch)-'a']++
 		}
 	}
 
+next:
 	for _, word := range words {
-		if len(word) < count {
-			continue
+		c := [26]int{}
+		for _, ch := range word {
+			c[ch-'a']++
 		}
-
-		wordLetterMap := make(map[int32]int)
-
-		for _, l := range strings.ToLower(word) {
-			if l >= 'a' && l <= 'z' {
-				wordLetterMap[l]++
+		for i := 0; i < 26; i++ {
+			if c[i] < cnt[i] {
+				continue next
 			}
 		}
-
-		ok := true
-		for l, num := range letterMap {
-			if num > wordLetterMap[l] {
-				ok = false
-				break
-			}
-		}
-
-		if ok {
-			return word
+		if ans == "" || len(word) < len(ans) {
+			ans = word
 		}
 	}
-
-	return ""
+	return
 }
