@@ -28,3 +28,7 @@ func reverseWords(s string) string {
 
 	return strings.TrimRight(ans, " ")
 }
+
+// 1. trim space
+// 2. push each word to stack
+// 3. pop and join
